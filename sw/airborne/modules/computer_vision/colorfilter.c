@@ -43,12 +43,34 @@ PRINT_CONFIG_VAR(COLORFILTER_SEND_OBSTACLE)
 struct video_listener *listener = NULL;
 
 // Filter Settings
-uint8_t color_lum_min = 105;
-uint8_t color_lum_max = 205;
-uint8_t color_cb_min  = 52;
-uint8_t color_cb_max  = 140;
+// uint8_t color_lum_min = 105;
+// uint8_t color_lum_max = 205;
+// uint8_t color_cb_min  = 52;
+// uint8_t color_cb_max  = 140;
+// uint8_t color_cr_min  = 180;
+// uint8_t color_cr_max  = 255;
+
+uint8_t color_lum_min = 20;
+uint8_t color_lum_max = 255;
+uint8_t color_cb_min  = 75;
+uint8_t color_cb_max  = 145;
 uint8_t color_cr_min  = 180;
 uint8_t color_cr_max  = 255;
+
+uint8_t color1_lum_min = 20;
+uint8_t color1_lum_max = 255;
+uint8_t color1_cb_min  = 0;
+uint8_t color1_cb_max  = 125;
+uint8_t color1_cr_min  = 148;
+uint8_t color1_cr_max  = 255;
+
+uint8_t color2_lum_min = 0;
+uint8_t color2_lum_max = 20;
+uint8_t color2_cb_min  = 124;
+uint8_t color2_cb_max  = 133;
+uint8_t color2_cr_min  = 124;
+uint8_t color2_cr_max  = 133;
+
 
 // Result
 int color_count = 0;
@@ -62,12 +84,29 @@ struct image_t *colorfilter_func(struct image_t *img);
 struct image_t *colorfilter_func(struct image_t *img)
 {
   // Filter
-  color_count = image_yuv422_colorfilt(img, img,
-                                       color_lum_min, color_lum_max,
-                                       color_cb_min, color_cb_max,
-                                       color_cr_min, color_cr_max
-                                      );
+  // color_count = image_yuv422_colorfilt(img, img,
+  //                                      color_lum_min, color_lum_max,
+  //                                      color_cb_min, color_cb_max,
+  //                                      color_cr_min, color_cr_max
+  //                                     );
 
+	  color_count = image_yuv422_colorfiltr_new(img, img,
+	                                       color_lum_min, color_lum_max,
+	                                       color_cb_min, color_cb_max,
+	                                       color_cr_min, color_cr_max,color1_lum_min, color1_lum_max,
+	                                       color1_cb_min, color1_cb_max,
+	                                       color1_cr_min, color1_cr_max
+	                                      );
+
+//	  color_count = image_yuv422_colorfiltr_new3(img, img,
+//	                                       color_lum_min, color_lum_max,
+//	                                       color_cb_min, color_cb_max,
+//	                                       color_cr_min, color_cr_max,color1_lum_min, color1_lum_max,
+//	                                       color1_cb_min, color1_cb_max,
+//	                                       color1_cr_min, color1_cr_max,color2_lum_min, color2_lum_max,
+//	                                       color2_cb_min, color2_cb_max,
+//	                                       color2_cr_min, color2_cr_max
+//	                                      );
 
   if (COLORFILTER_SEND_OBSTACLE) {
     if (color_count > 20)
