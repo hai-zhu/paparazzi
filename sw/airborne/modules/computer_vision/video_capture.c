@@ -59,6 +59,10 @@ int video_capture_index = 0;
 struct image_t *video_capture_func(struct image_t *img);
 void video_capture_save(struct image_t *img);
 
+void video_capture_periodic(void)
+{
+  video_capture_take_shot = true;
+}
 
 void video_capture_init(void)
 {

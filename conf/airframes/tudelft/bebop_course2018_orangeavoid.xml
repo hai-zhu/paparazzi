@@ -51,6 +51,10 @@
 
     <!-- Video/Camera modules -->
     <module name="video_thread" />
+    <module name="video_capture">
+      <define name="VIDEO_CAPTURE_CAMERA" value="front_camera"/>
+      <define name="VIDEO_CAPTURE_PATH" value="/data/ftp/internal_000/images"/>
+    </module>    
     <!--module name="cv_ae_awb">
       <define name="CV_AE_AWB_AV" value="1" />
       <define name="CV_AE_AWB_VERBOSE" value="0" />

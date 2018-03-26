@@ -872,10 +872,10 @@ uint16_t image_yuv422_colorfiltr_new(struct image_t *input, struct image_t *outp
 
  // Copy the creation timestamp (stays the same)
  output->ts = input->ts;
- printf("s1 \n");
+//  printf("s1 \n");
  // Go trough all the pixels
- printf("colorfilter_height: %d\n",output->h);
- printf("colorfilter_width: %d\n",output->w);
+//  printf("colorfilter_height: %d\n",output->h);
+//  printf("colorfilter_width: %d\n",output->w);
  for (uint16_t y = 0; y < output->h; y++) {
    for (uint16_t x = 0; x < output->w; x += 2) {
      // Check if the color is inside the specified values
@@ -916,7 +916,7 @@ uint16_t image_yuv422_colorfiltr_new(struct image_t *input, struct image_t *outp
      source += 4;
    }
  }
- printf("s2 \n");
+//  printf("s2 \n");
  return cnt;
 }
 
@@ -931,10 +931,10 @@ uint16_t image_yuv422_colorfiltr_new3(struct image_t *input, struct image_t *out
 
  // Copy the creation timestamp (stays the same)
  output->ts = input->ts;
- printf("s1 \n");
+//  printf("s1 \n");
  // Go trough all the pixels
- printf("colorfilter_height: %d\n",output->h);
- printf("colorfilter_width: %d\n",output->w);
+//  printf("colorfilter_height: %d\n",output->h);
+//  printf("colorfilter_width: %d\n",output->w);
  for (uint16_t y = 0; y < output->h; y++) {
    for (uint16_t x = 0; x < output->w; x += 2) {
      // Check if the color is inside the specified values
@@ -980,6 +980,6 @@ uint16_t image_yuv422_colorfiltr_new3(struct image_t *input, struct image_t *out
      source += 4;
    }
  }
- printf("s2 \n");
+//  printf("s2 \n");
  return cnt;
 }

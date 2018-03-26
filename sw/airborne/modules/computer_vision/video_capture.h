@@ -34,5 +34,6 @@ extern bool video_capture_take_shot;
 // Module functions
 extern void video_capture_init(void);
 extern void video_capture_shoot(void);
+extern void video_capture_periodic(void);
 
 #endif /* VIDEO_CAPTURE_H_ */
