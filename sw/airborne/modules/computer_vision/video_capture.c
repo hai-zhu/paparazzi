@@ -54,13 +54,25 @@ PRINT_CONFIG_VAR(VIDEO_CAPTURE_FPS)
 // Module settings
 bool video_capture_take_shot = false;
 int video_capture_index = 0;
-
+bool capture_if = false;
 // Forward function declarations
 struct image_t *video_capture_func(struct image_t *img);
 void video_capture_save(struct image_t *img);
 
+void capture_start(void)
+{
+  capture_if = true;
+}
+
+void capture_stop(void)
+{
+  capture_if = false;
+}
+
 void video_capture_periodic(void)
 {
+  if (capture_if == false)
+    return;
   video_capture_take_shot = true;
 }
 

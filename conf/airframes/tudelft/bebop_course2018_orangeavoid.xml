@@ -13,9 +13,9 @@
 
     <!-- Front Camera parameters -->
     <define name="MT9F002_INITIAL_OFFSET_X" value="0.09" /> <!-- Offset from center position [-0.5..0.5]. Set to 0.09 to center horizon. -->
-    <define name="MT9F002_INITIAL_OFFSET_Y" value="0." /> <!-- Offset from center position [-0.5..0.5] -->
-    <define name="MT9F002_OUTPUT_WIDTH" value="240" /> <!-- Output dimensions -->
-    <define name="MT9F002_OUTPUT_HEIGHT" value="520" /> <!-- Output dimensions -->
+    <define name="MT9F002_INITIAL_OFFSET_Y" value="0.0" /> <!-- Offset from center position [-0.5..0.5] -->
+    <define name="MT9F002_OUTPUT_WIDTH" value="520" /> <!-- Output dimensions -->
+    <define name="MT9F002_OUTPUT_HEIGHT" value="300" /> <!-- Output dimensions -->
     <define name="MT9F002_TARGET_FPS" value="30" />
     <define name="MT9F002_TARGET_EXPOSURE" value="20" />
     <define name="MT9F002_GAIN_GREEN1" value="4.0" />
@@ -54,7 +54,7 @@
     <module name="video_capture">
       <define name="VIDEO_CAPTURE_CAMERA" value="front_camera"/>
       <define name="VIDEO_CAPTURE_PATH" value="/data/ftp/internal_000/images"/>
-    </module>    
+    </module>  
     <!--module name="cv_ae_awb">
       <define name="CV_AE_AWB_AV" value="1" />
       <define name="CV_AE_AWB_VERBOSE" value="0" />
@@ -108,12 +108,12 @@
 
   <!-- Cyberzoo bebop1 values -->
   <section name="COLORFILTER" prefix="ORANGE_AVOIDER_">
-    <define name="LUM_MIN" value="20"/>
-    <define name="LUM_MAX" value="180"/>
-    <define name="CB_MIN" value="75"/>
-    <define name="CB_MAX" value="145"/>
-    <define name="CR_MIN" value="167"/>
-    <define name="CR_MAX" value="255"/>
+    <define name="LUM_MIN" value="75"/>
+    <define name="LUM_MAX" value="115"/>
+    <define name="CB_MIN" value="120"/>
+    <define name="CB_MAX" value="130"/>
+    <define name="CR_MIN" value="125"/>
+    <define name="CR_MAX" value="135"/>
   </section>
 
   <section name="AIR_DATA" prefix="AIR_DATA_">

@@ -59,6 +59,7 @@ extern uint8_t color2_cb_max;
 extern uint8_t color2_cr_min;
 extern uint8_t color2_cr_max;
 extern int color_count;
+extern float ratio;
 
 extern struct video_listener *listener;
 

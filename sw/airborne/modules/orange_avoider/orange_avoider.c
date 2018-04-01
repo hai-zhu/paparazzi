@@ -32,32 +32,32 @@
 #endif
 
 #ifndef ORANGE_AVOIDER_LUM_MIN
-#define ORANGE_AVOIDER_LUM_MIN 41
+#define ORANGE_AVOIDER_LUM_MIN 7s5
 #endif
 
 #ifndef ORANGE_AVOIDER_LUM_MAX
-#define ORANGE_AVOIDER_LUM_MAX 183
+#define ORANGE_AVOIDER_LUM_MAX 115
 #endif
 
 #ifndef ORANGE_AVOIDER_CB_MIN
-#define ORANGE_AVOIDER_CB_MIN 53
+#define ORANGE_AVOIDER_CB_MIN 120
 #endif
 
 #ifndef ORANGE_AVOIDER_CB_MAX
-#define ORANGE_AVOIDER_CB_MAX 121
+#define ORANGE_AVOIDER_CB_MAX 130
 #endif
 
 #ifndef ORANGE_AVOIDER_CR_MIN
-#define ORANGE_AVOIDER_CR_MIN 134
+#define ORANGE_AVOIDER_CR_MIN 125
 #endif
 
 #ifndef ORANGE_AVOIDER_CR_MAX
-#define ORANGE_AVOIDER_CR_MAX 249
+#define ORANGE_AVOIDER_CR_MAX 135
 #endif
 
 
 uint8_t safeToGoForwards        = false;
-int tresholdColorCount          = 0.05 * 124800; // 520 x 240 = 124.800 total pixels
+int tresholdColorCount          = 120; // 520 x 240 = 124.800 total pixels
 float incrementForAvoidance;
 uint16_t trajectoryConfidence   = 1;
 float maxDistance               = 2.25;
@@ -86,9 +86,9 @@ void orange_avoider_periodic()
 {
   // Check the amount of orange. If this is above a threshold
   // you want to turn a certain amount of degrees
-  safeToGoForwards = color_count < tresholdColorCount;
+  safeToGoForwards = color_count >= tresholdColorCount;
   VERBOSE_PRINT("Color_count: %d  threshold: %d safe: %d \n", color_count, tresholdColorCount, safeToGoForwards);
-  float moveDistance = fmin(maxDistance, 0.05 * trajectoryConfidence);
+  float moveDistance = fmin(maxDistance, 0.15 * (color_count-120));
   if (safeToGoForwards) {
     moveWaypointForward(WP_GOAL, moveDistance);
     moveWaypointForward(WP_TRAJECTORY, 1.25 * moveDistance);
@@ -96,9 +96,17 @@ void orange_avoider_periodic()
     chooseRandomIncrementAvoidance();
     trajectoryConfidence += 1;
   } else {
+    VERBOSE_PRINT("ratio: %f\n",ratio);
     waypoint_set_here_2d(WP_GOAL);
     waypoint_set_here_2d(WP_TRAJECTORY);
-    increase_nav_heading(&nav_heading, incrementForAvoidance);
+    if((ratio > 0.8) || (ratio<1.2))
+    {
+      increase_nav_heading(&nav_heading, 90);
+    }
+    else
+    {
+      increase_nav_heading(&nav_heading, -5*(ratio-1));
+    }
     if (trajectoryConfidence > 5) {
       trajectoryConfidence -= 4;
     } else {

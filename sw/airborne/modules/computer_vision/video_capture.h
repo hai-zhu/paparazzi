@@ -35,5 +35,7 @@ extern bool video_capture_take_shot;
 extern void video_capture_init(void);
 extern void video_capture_shoot(void);
 extern void video_capture_periodic(void);
+extern void capture_start(void);
+extern void capture_stop(void);
 
 #endif /* VIDEO_CAPTURE_H_ */

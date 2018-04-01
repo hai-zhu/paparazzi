@@ -33,9 +33,10 @@
   </header>
 
   <init fun="video_capture_init()"/>
-  <periodic fun="video_capture_periodic()" freq="5"/>
+  <periodic fun="video_capture_periodic()" freq="5" start="capture_start()"
+		    stop="capture_stop()" autorun="FALSE"/>
 
-  <makefile target="ap">
+  <makefile>
     <file name="video_capture.c"/>
   </makefile>
 

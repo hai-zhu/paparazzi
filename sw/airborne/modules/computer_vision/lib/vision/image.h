@@ -120,5 +120,5 @@ void image_draw_line_color(struct image_t *img, struct point_t *from, struct poi
 void pyramid_next_level(struct image_t *input, struct image_t *output, uint8_t border_size);
 void pyramid_build(struct image_t *input, struct image_t *output_array, uint8_t pyr_level, uint16_t border_size);
 void image_gradient_pixel(struct image_t *img, struct point_t *loc, int method, int *dx, int *dy);
-
+float leftorright(struct image_t *input, int line);
 #endif
