@@ -43,7 +43,6 @@ float leftorright(struct image_t *input, int line)
   source = source + 4 * line;
   for (uint16_t y = 0; y < input->h; y++) 
   { 
-    source += 4 * input->w / 2;
     if (   (y <= input->h/2)
         && (source[0] == 64)        // U
         && (source[1] == 100)  // Y
@@ -60,8 +59,22 @@ float leftorright(struct image_t *input, int line)
       ) {
         rightpix++;
       } 
+      source += 4 * input->w / 2;
   }
   ratio = leftpix/rightpix;
+
+  struct point_t from = {
+    line*2,
+    0,
+    0, 0, 0
+  };
+  struct point_t to = {
+    line*2,
+    input->w-1,
+    0, 0, 0
+  };
+  image_draw_line(input, &from, &to);
+  
   return ratio;
 }
 

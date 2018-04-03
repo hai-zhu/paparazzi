@@ -61,7 +61,7 @@ void file_logger_start(void)
   if (file_logger != NULL) {
     fprintf(
       file_logger,
-      "counter,gyro_unscaled_p,gyro_unscaled_q,gyro_unscaled_r,accel_unscaled_x,accel_unscaled_y,accel_unscaled_z,mag_unscaled_x,mag_unscaled_y,mag_unscaled_z,COMMAND_THRUST,COMMAND_ROLL,COMMAND_PITCH,COMMAND_YAW,qi,qx,qy,qz\n"
+      "counter,gyro_unscaled_p,gyro_unscaled_q,gyro_unscaled_r,accel_unscaled_x,accel_unscaled_y,accel_unscaled_z,mag_unscaled_x,mag_unscaled_y,mag_unscaled_z,COMMAND_THRUST,COMMAND_ROLL,COMMAND_PITCH,COMMAND_YAW,qi,qx,qy,qz,pos_x,pos_y,pos_z\n"
     );
   }
 }
@@ -84,7 +84,7 @@ void file_logger_periodic(void)
   static uint32_t counter;
   struct Int32Quat *quat = stateGetNedToBodyQuat_i();
 
-  fprintf(file_logger, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
+  fprintf(file_logger, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
           counter,
           imu.gyro_unscaled.p,
           imu.gyro_unscaled.q,
@@ -102,7 +102,10 @@ void file_logger_periodic(void)
           quat->qi,
           quat->qx,
           quat->qy,
-          quat->qz
+          quat->qz,
+          state.ned_pos_i.x,
+          state.ned_pos_i.y,
+          state.ned_pos_i.z
          );
   counter++;
 }
