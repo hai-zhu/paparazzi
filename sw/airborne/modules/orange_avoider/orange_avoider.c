@@ -32,7 +32,7 @@
 #endif
 
 #ifndef ORANGE_AVOIDER_LUM_MIN
-#define ORANGE_AVOIDER_LUM_MIN 7s5
+#define ORANGE_AVOIDER_LUM_MIN 75
 #endif
 
 #ifndef ORANGE_AVOIDER_LUM_MAX
