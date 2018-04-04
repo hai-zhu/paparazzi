@@ -88,7 +88,7 @@ void orange_avoider_periodic()
   // you want to turn a certain amount of degrees
   safeToGoForwards = color_count >= tresholdColorCount;
   VERBOSE_PRINT("                        Color_count: %d safe: %d \n", color_count, safeToGoForwards);
-  float moveDistance = fmin(maxDistance, 0.028 * (color_count-120));
+  float moveDistance = fmin(maxDistance, 0.025 * (color_count-120));
   if (safeToGoForwards) {
     moveWaypointForward(WP_GOAL, moveDistance);
     moveWaypointForward(WP_TRAJECTORY, 1.25 * moveDistance);
